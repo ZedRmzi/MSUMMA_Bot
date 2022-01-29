@@ -19,7 +19,10 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     pass
-    
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hello!")
 
 
 bot.run(TOKEN)
