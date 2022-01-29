@@ -13,5 +13,14 @@ bot = commands.Bot(command_prefix='$')
 async def on_ready():
     print("Ready")
 
+@bot.event
+async def on_member_join(member):
+    print('someone joined')
+
+@bot.event
+async def on_member_remove(member):
+    pass
+    
+
 
 bot.run(TOKEN)
