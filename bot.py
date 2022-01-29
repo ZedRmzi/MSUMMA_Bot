@@ -3,12 +3,12 @@
 
 Code for the discord bot goes here
 """
-
+from TOKEN import TOKEN
 import discord
+from discord.ext import commands
 
-TOKEN = 'OTM2ODU2MDY1NDE5NjQ5MDQ1.YfTRMw.g-qFQIEC_TK4yD8IkmdnwHQuI1s'
+bot = commands.Bot(command_prefix='$')
 
-bot = discord.commands.Bot(command_prefix='!')
 
 class MyClient(discord.Client):
     async def on_ready(self):
