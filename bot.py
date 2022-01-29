@@ -8,7 +8,7 @@ import discord
 
 TOKEN = 'OTM2ODU2MDY1NDE5NjQ5MDQ1.YfTRMw.g-qFQIEC_TK4yD8IkmdnwHQuI1s'
 
-import discord
+bot = discord.commands.Bot(command_prefix='!')
 
 class MyClient(discord.Client):
     async def on_ready(self):
