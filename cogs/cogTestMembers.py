@@ -6,7 +6,7 @@ class MainCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def test(self, ctx):
+    async def test(self, ctx : commands.Context):
         print("cog worked!")
 
 def setup(bot):

@@ -10,6 +10,7 @@ import os
 
 import bot_lib.db as db
 from bot_lib.TOKEN import TOKEN
+from globalVariables import bot_command_prefix
 from discord.ext import commands
 
 
@@ -20,7 +21,7 @@ def main():
     intents = discord.Intents.default()
     intents.members = True
 
-    bot = commands.Bot(command_prefix='$', intents=intents, case_insensitive=True)
+    bot = commands.Bot(command_prefix=bot_command_prefix, intents=intents, case_insensitive=True)
     db.OpenUserDatabase()
 
 
@@ -57,12 +58,6 @@ def main():
     async def hello(ctx):
         username = ctx.message.author
         await ctx.send("Hello {}!".format(username))
-
-
-    #help command
-    @bot.command(aliases=["h"])
-    async def help(ctx, *args):
-        pass
 
     bot.run(TOKEN)
 
