@@ -4,7 +4,7 @@
 
 Code for the discord bot goes here
 """
-from distutils.util import change_root
+from time import sleep
 import discord
 import os
 
@@ -12,6 +12,7 @@ import bot_lib.db as db
 from bot_lib.TOKEN import TOKEN
 from discord.ext import commands
 
+# 937592567288201227
 
 
 def main():
@@ -42,15 +43,33 @@ def main():
 
     @bot.event
     async def on_member_join(member : discord.member):
-        db.OpenUserDatabase()
+        guild: discord.Guild = bot.get_guild(936839088215060530)
+        role = guild.get_role(937592567288201227)
         channel = bot.get_channel(937587875078344724)
+        await member.add_roles(role)
+        sleep(.5)
         await channel.send(f"Welcome {member.display_name} What is your real name?")
+        
 
 
     @bot.event
     async def on_member_remove(member : discord.member):
         channel : discord.channel = bot.get_channel(936839088215060533)
         await channel.send(f"Cya {member.display_name} we didn't love you anyway")
+
+    @bot.event
+    async def on_message(message: discord.message):
+        member = message.author
+        if not member.bot:
+            messageList = message.content.split()
+            firstName = messageList[0]
+            lastName = messageList[1]
+            discord_id = member.id
+            db.AddUser(discord_id, firstName, lastName)
+
+
+
+        
 
 
     @bot.command()

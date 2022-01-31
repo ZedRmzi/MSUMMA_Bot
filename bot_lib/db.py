@@ -21,3 +21,15 @@ def CloseDatabase():
     """Closes the database once done"""
     conn.commit
     conn.close
+
+def AddUser(discordId: str, firstName: str, lastName: str):
+    """
+    Add a member to the user relation.
+
+    `discordId`:  `str` The discord id of the member to add
+    `firstName`: `str` The first name of the member to add
+    `lastName`: `str` The last name of the member to add
+    """
+    OpenUserDatabase()
+    cur.execute("INSERT INTO users VALUES(?, ?, ?)", (str(discordId), firstName, lastName))
+    CloseDatabase()
