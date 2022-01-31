@@ -4,10 +4,14 @@
 
 Code for the discord bot goes here
 """
+from distutils.util import change_root
 import discord
 import os
-from TOKEN import TOKEN
+
+import bot_lib.db as db
+from bot_lib.TOKEN import TOKEN
 from discord.ext import commands
+
 
 
 def main():
@@ -17,6 +21,8 @@ def main():
     intents.members = True
 
     bot = commands.Bot(command_prefix='$', intents=intents, case_insensitive=True)
+    db.OpenUserDatabase()
+
 
     #remove built-in help command
     bot.remove_command("help")
@@ -35,13 +41,16 @@ def main():
 
 
     @bot.event
-    async def on_member_join(member):
-        print('someone joined')
+    async def on_member_join(member : discord.member):
+        db.OpenUserDatabase()
+        channel = bot.get_channel(937587875078344724)
+        await channel.send(f"Welcome {member.display_name} What is your real name?")
 
 
     @bot.event
-    async def on_member_remove(member):
-        pass
+    async def on_member_remove(member : discord.member):
+        channel : discord.channel = bot.get_channel(936839088215060533)
+        await channel.send(f"Cya {member.display_name} we didn't love you anyway")
 
 
     @bot.command()
