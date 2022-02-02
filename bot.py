@@ -10,7 +10,7 @@ import os
 
 import bot_lib.db as db
 from bot_lib.TOKEN import TOKEN
-from globalVariables import bot_command_prefix
+from data.globalVariables import bot_command_prefix
 from discord.ext import commands
 
 # 937592567288201227

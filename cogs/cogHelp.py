@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from globalVariables import bot_command_prefix
+from data.globalVariables import bot_command_prefix
 
 class HelpCog( commands.Cog ):
     def __init__( self, bot ):
