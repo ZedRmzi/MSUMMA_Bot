@@ -4,6 +4,7 @@
 
 Code for the discord bot goes here
 """
+from time import sleep
 import discord
 import os
 
@@ -12,6 +13,7 @@ from bot_lib.TOKEN import TOKEN
 from globalVariables import bot_command_prefix
 from discord.ext import commands
 
+# 937592567288201227
 
 
 def main():
@@ -42,9 +44,13 @@ def main():
 
     @bot.event
     async def on_member_join(member : discord.member):
-        db.OpenUserDatabase()
+        guild: discord.Guild = bot.get_guild(936839088215060530)
+        role = guild.get_role(937592567288201227)
         channel = bot.get_channel(937587875078344724)
+        await member.add_roles(role)
+        sleep(.5)
         await channel.send(f"Welcome {member.display_name} What is your real name?")
+
 
 
     @bot.event
