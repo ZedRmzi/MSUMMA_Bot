@@ -4,7 +4,6 @@
 
 Code for the discord bot goes here
 """
-from distutils.util import change_root
 import discord
 import os
 
